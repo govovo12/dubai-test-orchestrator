@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="使用者自訂變數">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="執行緒群組">
@@ -18,23 +20,6 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="使用者自訂變數">
-          <collectionProp name="Arguments.arguments">
-            <elementProp name="backwater_currency" elementType="Argument">
-              <stringProp name="Argument.name">backwater_currency</stringProp>
-              <stringProp name="Argument.value">RMB</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-              <stringProp name="Argument.desc">返水幣別</stringProp>
-            </elementProp>
-            <elementProp name="backwater_name" elementType="Argument">
-              <stringProp name="Argument.name">backwater_name</stringProp>
-              <stringProp name="Argument.value">TY時返</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-              <stringProp name="Argument.desc">反水專案名稱</stringProp>
-            </elementProp>
-          </collectionProp>
-        </Arguments>
-        <hashTree/>
         <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="UserDB">
           <collectionProp name="Arguments.arguments">
             <elementProp name="account" elementType="Argument">
@@ -51,7 +36,7 @@
             </elementProp>
             <elementProp name="SeverURL" elementType="Argument">
               <stringProp name="Argument.name">SeverURL</stringProp>
-              <stringProp name="Argument.value">rb00ctl.fbtest.info</stringProp>
+              <stringProp name="Argument.value">fatctl.fbtest.info</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">後台URL</stringProp>
             </elementProp>
@@ -154,10 +139,104 @@
           </ResultCollector>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="交易控制器">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="設定反水方案">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="返水主控變數">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="backwater_name" elementType="Argument">
+                <stringProp name="Argument.name">backwater_name</stringProp>
+                <stringProp name="Argument.value">tony平層時時返2</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">反水專案名稱</stringProp>
+              </elementProp>
+              <elementProp name="backwater_gp_id" elementType="Argument">
+                <stringProp name="Argument.name">backwater_gp_id</stringProp>
+                <stringProp name="Argument.value">GPCQ2</stringProp>
+                <stringProp name="Argument.desc">子平台 ID </stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="backwater_amount_min" elementType="Argument">
+                <stringProp name="Argument.name">backwater_amount_min</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">實投-最低($)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="backwater_amount_max" elementType="Argument">
+                <stringProp name="Argument.name">backwater_amount_max</stringProp>
+                <stringProp name="Argument.value">500000</stringProp>
+                <stringProp name="Argument.desc">實投-最高($)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="backwater_rate" elementType="Argument">
+                <stringProp name="Argument.name">backwater_rate</stringProp>
+                <stringProp name="Argument.value">10</stringProp>
+                <stringProp name="Argument.desc">返水比例</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="backwater_currency" elementType="Argument">
+                <stringProp name="Argument.name">backwater_currency</stringProp>
+                <stringProp name="Argument.value">RMB</stringProp>
+                <stringProp name="Argument.desc">反水幣別</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="backwater_gt_id" elementType="Argument">
+                <stringProp name="Argument.name">backwater_gt_id</stringProp>
+                <stringProp name="Argument.value">2</stringProp>
+                <stringProp name="Argument.desc">平台類別</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="返水防呆變數">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="backwater_calculate_type" elementType="Argument">
+                <stringProp name="Argument.name">backwater_calculate_type</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">1：平層，2：階梯</stringProp>
+              </elementProp>
+              <elementProp name="backwater_active" elementType="Argument">
+                <stringProp name="Argument.name">backwater_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">是否啟用該反水方案（1 啟用，0 停用）</stringProp>
+              </elementProp>
+              <elementProp name="backwater_upper_limit" elementType="Argument">
+                <stringProp name="Argument.name">backwater_upper_limit</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">反水金額上限（超過不再給，0 表示不限制）</stringProp>
+              </elementProp>
+              <elementProp name="backwater_bet_rate" elementType="Argument">
+                <stringProp name="Argument.name">backwater_bet_rate</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">返水額打碼量倍數（0 表示不檢查)</stringProp>
+              </elementProp>
+              <elementProp name="backwater_rt_active" elementType="Argument">
+                <stringProp name="Argument.name">backwater_rt_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">是否啟用即時反水（1 啟用，0 停用)</stringProp>
+              </elementProp>
+              <elementProp name="backwater_rt_upper_times" elementType="Argument">
+                <stringProp name="Argument.name">backwater_rt_upper_times</stringProp>
+                <stringProp name="Argument.value">1000</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">每日最多可領回幾次反水</stringProp>
+              </elementProp>
+              <elementProp name="backwater_rt_lower_limit" elementType="Argument">
+                <stringProp name="Argument.name">backwater_rt_lower_limit</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">領取即時反水的最低門檻（投注未達此金額不會給）</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="列出返水清單+篩出對應ID">
             <stringProp name="HTTPSampler.domain">${SeverURL}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -183,48 +262,44 @@
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="找反水ID">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">// 獲取回應的 JSON 資料
-String response = prev.getResponseDataAsString()  // 獲取回應資料
+              <stringProp name="script">import groovy.json.JsonSlurper
 
-// 解析 JSON 回應
-import groovy.json.JsonSlurper
-def jsonSlurper = new JsonSlurper()
-def jsonResponse = jsonSlurper.parseText(response)
+// 從回傳中解析 JSON
+def response = prev.getResponseDataAsString()
+def json = new JsonSlurper().parseText(response)
 
-// 提取 &apos;body.list&apos; 中的所有 &apos;name&apos; 和 &apos;id&apos;
-def namesAndIds = []  // 用來存儲所有的 &apos;name&apos; 和 &apos;id&apos;
-jsonResponse.body.list.each { item -&gt;
-    namesAndIds &lt;&lt; [name: item.name, id: item.id]  // 存儲為 [name, id] 的 Map
-}
+// 取得使用者設定的反水名稱變數
+def targetName = vars.get(&quot;backwater_name&quot;)
 
-// 輸出所有提取的資料以供調試
-log.info(&quot;Extracted names and ids: &quot; + namesAndIds)
+// 預設為空
+def matchedId = null
 
-// 查找 &apos;name&apos; 為 &apos;TY時返&apos; 的 &apos;id&apos;
-def targetName = &quot;TY時返&quot;
-def backwaterId = null
-
-namesAndIds.each { entry -&gt;
-    if (entry.name == targetName) {
-        backwaterId = entry.id  // 找到匹配的 &apos;name&apos; 並提取對應的 &apos;id&apos;
+// 遍歷 body.list 找出符合名稱的那一筆
+json.body.list.each { item -&gt;
+    if (item.name == targetName) {
+        matchedId = item.id
     }
 }
 
-// 如果找到對應的 &apos;id&apos;，設置為變數 &apos;backwater_id&apos;
-if (backwaterId != null) {
-    vars.put(&quot;backwater_id&quot;, backwaterId.toString())  // 將 &apos;backwater_id&apos; 設置為變數
-    log.info(&quot;Found backwater_id: &quot; + backwaterId)
+// 設定 JMeter 變數
+if (matchedId != null) {
+    vars.put(&quot;backwater_id&quot;, matchedId.toString())
+    log.info(&quot;抓到 backwater_id：${matchedId}&quot;)
 } else {
-    log.warn(&quot;No matching name found for &quot; + targetName)
+    log.warn(&quot;找不到名稱為 ${targetName} 的反水專案！&quot;)
 }
 
 
+
+
+
 </stringProp>
+              <stringProp name="TestPlan.comments">從反水方案名稱找對應ID</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
             <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="檢視結果樹">
@@ -265,9 +340,120 @@ if (backwaterId != null) {
             </ResultCollector>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP 要求">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="列出反水專案細節">
+            <stringProp name="HTTPSampler.domain">${SeverURL}</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">api/back_water/detail</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;id&quot;: &quot;${backwater_id}&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="提取反水細節變數（依 gp_id + gt_id） ">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper
+
+// 取得 API 回傳字串
+def responseBody = prev.getResponseDataAsString()
+def json = new JsonSlurper().parseText(responseBody)
+
+// 主控旗標 gp_id 與 gt_id
+def targetGpId = vars.get(&quot;backwater_gp_id&quot;)
+def targetGtId = vars.get(&quot;backwater_gt_id&quot;) as Integer
+
+log.info(&quot;[📌] 尋找條件：gp_id=${targetGpId}, gt_id=${targetGtId}&quot;)
+
+def found = false
+
+json.body.list.each { gameType -&gt;
+    if (gameType.gt_id == targetGtId) {
+        gameType.list.each { gp -&gt;
+            log.info(&quot;[🔍] 檢查 gp_id=${gp.gp_id}, gt_id=${gameType.gt_id}&quot;)
+            if (gp.gp_id == targetGpId) {
+                // 設定變數
+                vars.put(&quot;backwater_gp_name&quot;, gp.gp_name ?: &quot;&quot;)
+                vars.put(&quot;backwater_gp_gt_name&quot;, gp.gp_gt_name ?: &quot;&quot;)
+                vars.put(&quot;backwater_gt_name&quot;, gameType.gt_name ?: &quot;&quot;)
+                vars.put(&quot;backwater_currency_list&quot;, groovy.json.JsonOutput.toJson(gp.currency)) // 設定為合法 JSON 陣列
+                found = true
+                log.info(&quot;[✅] 已找到匹配 gp_id=${gp.gp_id}，幣別列表=${gp.currency}&quot;)
+            }
+        }
+    }
+}
+
+if (!found) {
+    log.warn(&quot;[⚠️] 無法根據 gp_id=${targetGpId} 與 gt_id=${targetGtId} 找到匹配資料&quot;)
+} else {
+    log.info(&quot;[🎯] 所有變數設置完成&quot;)
+}
+
+</stringProp>
+              <stringProp name="TestPlan.comments">根據主控變數 backwater_gp_id 與 backwater_gt_id
+從 API 回傳的 back_water_detail 中比對出目標子平台資訊，並提取以下變數：
+
+- backwater_gp_name（子平台名稱）
+- backwater_gp_gt_name（子平台顯示名稱）
+- backwater_gt_name（平台大類）
+- backwater_currency_list（多幣別）</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="檢視結果樹">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="變更反水方案細節">
             <stringProp name="TestPlan.comments">${backwaterid}</stringProp>
-            <stringProp name="HTTPSampler.domain">rb00ctl.fbtest.info</stringProp>
+            <stringProp name="HTTPSampler.domain">${SeverURL}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
             <stringProp name="HTTPSampler.path">/api/back_water/edit</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -279,47 +465,444 @@ if (backwaterId != null) {
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-  &quot;id&quot;: ${backwater_id},&#xd;
-  &quot;name&quot;: &quot;${name}&quot;,&#xd;
-  &quot;calculate_type&quot;: 1,&#xd;
-  &quot;active&quot;: 1,&#xd;
-  &quot;currency&quot;: &quot;${backwatercurrency}&quot;,&#xd;
-  &quot;upper_limit&quot;: 0,&#xd;
-  &quot;bet_rate&quot;: 0,&#xd;
+  &quot;id&quot;: &quot;${backwater_id}&quot;,&#xd;
+  &quot;name&quot;: &quot;${backwater_name}&quot;,&#xd;
+  &quot;calculate_type&quot;: ${backwater_calculate_type},&#xd;
+  &quot;active&quot;: ${backwater_active},&#xd;
+  &quot;currency&quot;: &quot;${backwater_currency}&quot;,&#xd;
+  &quot;upper_limit&quot;: ${backwater_upper_limit},&#xd;
+  &quot;bet_rate&quot;: ${backwater_bet_rate},&#xd;
   &quot;back_water_detail&quot;: [&#xd;
     {&#xd;
-      &quot;gt_name&quot;: &quot;體育&quot;,&#xd;
-      &quot;gt_id&quot;: 4,&#xd;
+      &quot;gt_name&quot;: &quot;${backwater_gt_name}&quot;,&#xd;
+      &quot;gt_id&quot;: ${backwater_gt_id},&#xd;
       &quot;list&quot;: [&#xd;
         {&#xd;
-          &quot;gp_id&quot;: &quot;GP3S&quot;,&#xd;
-          &quot;gp_name&quot;: &quot;旧三升体育&quot;,&#xd;
-          &quot;gp_gt_name&quot;: &quot;旧三升体育&quot;,&#xd;
+          &quot;gp_id&quot;: &quot;${backwater_gp_id}&quot;,&#xd;
+          &quot;gp_name&quot;: &quot;${backwater_gp_name}&quot;,&#xd;
+          &quot;gp_gt_name&quot;: &quot;${backwater_gp_gt_name}&quot;,&#xd;
           &quot;detail&quot;: [&#xd;
             {&#xd;
-              &quot;actual_amount_min&quot;: 10,&#xd;
-              &quot;actual_amount_max&quot;: 1000,&#xd;
-              &quot;rate&quot;: 10&#xd;
+              &quot;actual_amount_min&quot;: ${backwater_amount_min},&#xd;
+              &quot;actual_amount_max&quot;: ${backwater_amount_max},&#xd;
+              &quot;rate&quot;: ${backwater_rate}&#xd;
             }&#xd;
           ],&#xd;
-          &quot;currency&quot;: [&#xd;
-            &quot;RMB&quot;,&#xd;
-            &quot;VND&quot;&#xd;
-          ]&#xd;
+          &quot;currency&quot;: ${backwater_currency_list}&#xd;
         }&#xd;
       ],&#xd;
-      &quot;currency&quot;: [&#xd;
-        &quot;INR&quot;,&#xd;
-        &quot;NGN&quot;,&#xd;
-        &quot;RMB&quot;,&#xd;
-        &quot;THB&quot;,&#xd;
-        &quot;USD&quot;,&#xd;
-        &quot;VND&quot;&#xd;
-      ]&#xd;
+      &quot;currency&quot;: ${backwater_currency_list}&#xd;
     }&#xd;
-  ]&#xd;
+  ],&#xd;
+  &quot;rt_active&quot;: ${backwater_rt_active},&#xd;
+  &quot;rt_upper_times&quot;: ${backwater_rt_upper_times},&#xd;
+  &quot;rt_lower_limit&quot;: ${backwater_rt_lower_limit}&#xd;
 }&#xd;
 &#xd;
+&#xd;
+&#xd;
+&#xd;
+&#xd;
+&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="檢視結果樹">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="層級綁反水">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="層級主控變數">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="layer_bind_layer_name" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_layer_name</stringProp>
+                <stringProp name="Argument.value">Tony測試用</stringProp>
+                <stringProp name="Argument.desc">要綁定的層級名稱</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_currency" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_currency</stringProp>
+                <stringProp name="Argument.value">RMB</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <stringProp name="Argument.desc">層級的幣別</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="層級防呆變數">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="layer_bind_is_default" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_is_default</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.desc">是否預設反水</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_display" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_display</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">層級是否啟用</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_start_time" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_start_time</stringProp>
+                <stringProp name="Argument.value">2023-05-17 00:00:00</stringProp>
+                <stringProp name="Argument.desc">會員註冊時間（起)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_end_time" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_end_time</stringProp>
+                <stringProp name="Argument.value">2023-09-10 23:59:59</stringProp>
+                <stringProp name="Argument.desc">會員註冊時間（迄)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_time_active" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_time_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">會員註冊時間（啟用 / 停用)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_dep_freq" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_dep_freq</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.desc">存入次數</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_dep_freq_active" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_dep_freq_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">存入次數（啟用 / 停用)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_dep_amt" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_dep_amt</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.desc">存入總額</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_dep_amt_active" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_dep_amt_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">存入總額（啟用 / 停用）	</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_max_amt" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_max_amt</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.desc">最高存入金額</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_max_amt_active" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_max_amt_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">最高存入金額（啟用 / 停用)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_wd_freq" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_wd_freq</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.desc">出款次數	</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_wd_freq_active" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_wd_freq_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">出款次數（啟用 / 停用)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_wd_amt" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_wd_amt</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.desc">出款總額</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_wd_amt_active" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_wd_amt_active</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">出款總額（啟用 / 停用)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_is_default" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_is_default</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.desc">是否預設返水✅ 啟用 / 停用 </stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="layer_bind_display" elementType="Argument">
+                <stringProp name="Argument.name">layer_bind_display</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.desc">層級顯示✅ 啟用 / 停用 </stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="列出返水清單+篩出對應ID">
+            <stringProp name="TestPlan.comments">查詢符合幣別與名稱的層級資訊，供綁定反水使用</stringProp>
+            <stringProp name="HTTPSampler.domain">${SeverURL}</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">api/back_water</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;sort_field&quot;: &quot;id&quot;,&#xd;
+  &quot;sort_order&quot;: &quot;desc&quot;,&#xd;
+  &quot;currency&quot;: &quot;${backwater_currency}&quot;,&#xd;
+  &quot;count&quot;: 50,&#xd;
+  &quot;page&quot;: 1&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="找反水ID">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper
+
+// 從回傳中解析 JSON
+def response = prev.getResponseDataAsString()
+def json = new JsonSlurper().parseText(response)
+
+// 取得使用者設定的反水名稱變數
+def targetName = vars.get(&quot;backwater_name&quot;)
+
+// 預設為空
+def matchedId = null
+
+// 遍歷 body.list 找出符合名稱的那一筆
+json.body.list.each { item -&gt;
+    if (item.name == targetName) {
+        matchedId = item.id
+    }
+}
+
+// 設定 JMeter 變數
+if (matchedId != null) {
+    vars.put(&quot;backwater_id&quot;, matchedId.toString())
+    log.info(&quot;抓到 backwater_id：${matchedId}&quot;)
+} else {
+    log.warn(&quot;找不到名稱為 ${targetName} 的反水專案！&quot;)
+}
+
+
+
+
+
+</stringProp>
+              <stringProp name="TestPlan.comments">從反水方案名稱找對應ID</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="檢視結果樹">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="列出層級清單 - 篩出對應層級資料">
+            <stringProp name="HTTPSampler.domain">${SeverURL}</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">/api/member/member_grade</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;currency&quot;: &quot;${layer_bind_currency}&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="擷取層級資訊變數 ">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">import groovy.json.JsonSlurper
+
+def response = prev.getResponseDataAsString()
+def json = new JsonSlurper().parseText(response)
+
+def targetName = vars.get(&quot;layer_bind_layer_name&quot;)
+def targetCurrency = vars.get(&quot;layer_bind_currency&quot;)
+
+def match = json.body.grade_list.find { 
+    it.name == targetName &amp;&amp; it.currency == targetCurrency 
+}
+
+if (match) {
+    vars.put(&quot;layer_bind_layer_id&quot;, match.id.toString())
+    log.info(&quot;✅ 擷取層級成功：ID=${match.id}, 幣別=${match.currency}&quot;)
+} else {
+    log.error(&quot;❌ 查無層級名稱：&quot; + targetName + &quot; / 幣別：&quot; + targetCurrency)
+    throw new Exception(&quot;未找到對應層級，流程終止&quot;)
+}
+</stringProp>
+              <stringProp name="TestPlan.comments">從查詢結果中，根據 layer_bind_layer_name 和 layer_bind_currency 取出該層級的 id、start_time、end_time 等欄位，供後續組 payload 用</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="檢視結果樹">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>true</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <sentBytes>true</sentBytes>
+                  <url>true</url>
+                  <threadCounts>true</threadCounts>
+                  <idleTime>true</idleTime>
+                  <connectTime>true</connectTime>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="將層級綁定反水方案">
+            <stringProp name="HTTPSampler.domain">${SeverURL}</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">/api/member/member_grade/edit</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;id&quot;: ${layer_bind_layer_id},&#xd;
+  &quot;name&quot;: &quot;${layer_bind_layer_name}&quot;,&#xd;
+  &quot;currency&quot;: &quot;${layer_bind_currency}&quot;,&#xd;
+  &quot;memo&quot;: &quot;&quot;,&#xd;
+  &quot;start_time&quot;: &quot;${layer_bind_start_time}&quot;,&#xd;
+  &quot;end_time&quot;: &quot;${layer_bind_end_time}&quot;,&#xd;
+  &quot;deposit_frequency&quot;: &quot;${layer_bind_dep_freq}&quot;,&#xd;
+  &quot;deposit_amount&quot;: &quot;${layer_bind_dep_amt}&quot;,&#xd;
+  &quot;maximum_amount&quot;: &quot;${layer_bind_max_amt}&quot;,&#xd;
+  &quot;withdrawal_frequency&quot;: &quot;${layer_bind_wd_freq}&quot;,&#xd;
+  &quot;withdrawal_amount&quot;: &quot;${layer_bind_wd_amt}&quot;,&#xd;
+  &quot;time_active&quot;: ${layer_bind_time_active},&#xd;
+  &quot;dp_fre_active&quot;: ${layer_bind_dep_freq_active},&#xd;
+  &quot;dp_active&quot;: ${layer_bind_dep_amt_active},&#xd;
+  &quot;max_active&quot;: ${layer_bind_max_amt_active},&#xd;
+  &quot;wd_fre_active&quot;: ${layer_bind_wd_freq_active},&#xd;
+  &quot;wd_active&quot;: ${layer_bind_wd_amt_active},&#xd;
+  &quot;bw_id&quot;: ${backwater_id},&#xd;
+  &quot;is_default&quot;: ${layer_bind_is_default},&#xd;
+  &quot;display&quot;: ${layer_bind_display}&#xd;
+}&#xd;
 </stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
